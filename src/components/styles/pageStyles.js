@@ -27,11 +27,32 @@ const styles = {
   button: {
     color: "white",
     backgroundColor: "#3f51b5",
+    marginRight: 10,
+    padding: 7,
   },
   content: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  footer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 5,
+    position: "fixed",
+    bottom: 0,
+    backgroundColor: "#1976d2",
+    color: "white",
+    width: "98%",
+  },
+  loading: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 20,
+    padding: 20,
   },
 };
 

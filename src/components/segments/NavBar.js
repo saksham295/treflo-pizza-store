@@ -8,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+import { Button } from "@mui/material";
+import { Link } from "@material-ui/core";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -17,6 +20,7 @@ const Search = styled("div")(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
+  marginRight: 20,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
@@ -81,6 +85,11 @@ export default function NavBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <Link href="/cart">
+            <Button sx={{ color: "white" }}>
+              <ShoppingCartSharpIcon fontSize="large" />
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

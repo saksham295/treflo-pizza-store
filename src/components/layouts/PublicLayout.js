@@ -13,10 +13,10 @@ function PublicLayout() {
       <header>
         <NavBar />
       </header>
-      <Outlet />
-      <footer>
-        <span>This is footer</span>
+      <footer className={classes.footer}>
+        <span>Treflo Assignment - Pizza Store - Saksham Jain</span>
       </footer>
+      <Outlet />
     </div>
   );
 }
