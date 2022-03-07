@@ -9,6 +9,7 @@ import {
   CardActions,
   Button,
   makeStyles,
+  Toolbar,
 } from "@material-ui/core";
 import {
   Rating,
@@ -16,6 +17,8 @@ import {
   DialogTitle,
   DialogContent,
   CircularProgress,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import PizzaCustomize from "../segments/PizzaCustomize";
 import pageStyles from "../styles/pageStyles";
@@ -56,68 +59,96 @@ function Dashboard() {
           </Typography>
         </div>
       ) : (
-        <div className={classes.dash}>
-          {pizzas.map((row) => (
-            <Card key={row.id} className={classes.root}>
-              <CardMedia
-                className={classes.media}
-                component="img"
-                title="Center"
-                image={row.img_url}
-              />
-              <CardContent className={classes.content}>
-                <Typography
-                  align="center"
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                  color="primary"
-                >
-                  {row.name}
-                </Typography>
-                <Typography align="center">{row.description}</Typography>
-                <Rating
-                  name="rating"
-                  value={row.rating}
-                  precision={0.5}
-                  readOnly
-                />
-                <Typography align="center">Price: ${row.price}</Typography>
-                <Typography align="center">
-                  {row.isVeg ? "Vegetarian" : "Non-Vegetarian"}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  size="small"
-                  className={classes.button}
-                  onClick={() => handleClickOpen(row.id)}
-                >
-                  +
+        <>
+          <div>
+            <Toolbar>
+              <Typography variant="h5" sx>
+                Sort By -
+                <Button size="small" className={classes.button}>
+                  Price
                 </Button>
                 <Button size="small" className={classes.button}>
-                  -
+                  Rating
                 </Button>
-              </CardActions>
-            </Card>
-          ))}
-          {loading ? (
-            <CircularProgress color="primary" size={20} />
-          ) : (
-            <Dialog
-              selectedValue={selectedValue}
-              open={open}
-              onClose={handleClose}
-            >
-              <DialogTitle id="form-dialog-title">
-                Choose Size and Toppings
-              </DialogTitle>
-              <DialogContent>
-                <PizzaCustomize selectedPizzaId={selectedValue} />
-              </DialogContent>
-            </Dialog>
-          )}
-        </div>
+              </Typography>
+              <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
+                <ToggleButton>
+                  <Typography>Veg</Typography>
+                </ToggleButton>
+                <ToggleButton>
+                  <Typography>Non-Veg</Typography>
+                </ToggleButton>
+                <ToggleButton>
+                  <Typography>All</Typography>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Toolbar>
+          </div>
+          <div className={classes.dash}>
+            {pizzas.map((row) => (
+              <Card key={row.id} className={classes.root}>
+                <CardMedia
+                  className={classes.media}
+                  component="img"
+                  title="Center"
+                  image={row.img_url}
+                />
+                <CardContent className={classes.content}>
+                  <Typography
+                    align="center"
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    color="primary"
+                  >
+                    {row.name}
+                  </Typography>
+                  <Typography align="center">{row.description}</Typography>
+                  <Rating
+                    name="rating"
+                    value={row.rating}
+                    precision={0.5}
+                    readOnly
+                  />
+                  <Typography align="center">Price: ${row.price}</Typography>
+                  <Typography align="center">
+                    {row.isVeg ? "Vegetarian" : "Non-Vegetarian"}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    className={classes.button}
+                    onClick={() => handleClickOpen(row.id)}
+                  >
+                    +
+                  </Button>
+                  <Button size="small" className={classes.button}>
+                    -
+                  </Button>
+                </CardActions>
+              </Card>
+            ))}
+            {loading ? (
+              <CircularProgress color="primary" size={20} />
+            ) : (
+              <Dialog
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+                fullWidth="true"
+                maxWidth="sm"
+              >
+                <DialogTitle align="center">
+                  Choose Size and Toppings
+                </DialogTitle>
+                <DialogContent>
+                  <PizzaCustomize selectedPizzaId={selectedValue} />
+                </DialogContent>
+              </Dialog>
+            )}
+          </div>
+        </>
       )}
     </>
   );

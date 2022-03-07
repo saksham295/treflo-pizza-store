@@ -27,7 +27,7 @@ const styles = {
   button: {
     color: "white",
     backgroundColor: "#3f51b5",
-    marginRight: 10,
+    margin: "2px 10px",
     padding: 7,
   },
   content: {
