@@ -80,23 +80,23 @@ function Dashboard() {
         <>
           <div>
             <Toolbar>
-              <Typography variant="h5" sx={{ color: "#0ea58a" }}>
+              <Typography variant="h5" className={classes.content}>
                 Sort Pizzas -
-                <Button
-                  size="small"
-                  className={classes.button}
-                  onClick={handleClickPrice}
-                >
-                  Price
-                </Button>
-                <Button
-                  size="small"
-                  className={classes.button}
-                  onClick={handleClickRating}
-                >
-                  Rating
-                </Button>
               </Typography>
+              <Button
+                size="small"
+                className={classes.button}
+                onClick={handleClickPrice}
+              >
+                Price
+              </Button>
+              <Button
+                size="small"
+                className={classes.button}
+                onClick={handleClickRating}
+              >
+                Rating
+              </Button>
               <div style={{ float: "right" }}>
                 <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
                   <ToggleButton onClick={handleClickVeg}>

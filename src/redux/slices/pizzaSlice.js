@@ -91,7 +91,7 @@ export function sortVeg() {
       );
       const data = await response.json();
 
-      data?.filter((pizza) => pizza.isVeg);
+      data?.filter((pizza) => pizza.isVeg === true);
 
       dispatch(getPizzasSuccess(data));
     } catch (error) {
