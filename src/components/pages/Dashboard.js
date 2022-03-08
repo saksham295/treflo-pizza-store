@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPizzas, pizzaSelector } from "../../redux/slices/pizzaSlice";
+import {
+  fetchPizzas,
+  pizzaSelector,
+  sortByPrice,
+  sortByRating,
+  sortVeg,
+} from "../../redux/slices/pizzaSlice";
 import {
   Typography,
   Card,
@@ -34,6 +40,18 @@ function Dashboard() {
     dispatch(fetchPizzas());
   }, [dispatch]);
 
+  const handleClickPrice = () => {
+    dispatch(sortByPrice());
+  };
+
+  const handleClickRating = () => {
+    dispatch(sortByRating());
+  };
+
+  const handleClickVeg = () => {
+    dispatch(sortVeg());
+  };
+
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState();
 
@@ -62,18 +80,26 @@ function Dashboard() {
         <>
           <div>
             <Toolbar>
-              <Typography variant="h5" sx>
+              <Typography variant="h5" sx={{ color: "#0ea58a" }}>
                 Sort Pizzas -
-                <Button size="small" className={classes.button}>
+                <Button
+                  size="small"
+                  className={classes.button}
+                  onClick={handleClickPrice}
+                >
                   Price
                 </Button>
-                <Button size="small" className={classes.button}>
+                <Button
+                  size="small"
+                  className={classes.button}
+                  onClick={handleClickRating}
+                >
                   Rating
                 </Button>
               </Typography>
               <div style={{ float: "right" }}>
                 <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
-                  <ToggleButton>
+                  <ToggleButton onClick={handleClickVeg}>
                     <Typography>Veg</Typography>
                   </ToggleButton>
                   <ToggleButton>
