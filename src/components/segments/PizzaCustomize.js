@@ -5,15 +5,20 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { pizzaSelector } from "../../redux/slices/pizzaSlice";
 import { Button, makeStyles } from "@material-ui/core";
 import pageStyles from "../styles/pageStyles";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 const useStyles = makeStyles(pageStyles);
 
-function PizzaCustomize({ selectedPizzaId }) {
+function PizzaCustomize({ selectedPizzaId, onCancel }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   const { pizzas } = useSelector(pizzaSelector);
   const pizza = pizzas.filter((pizza) => pizza.id === selectedPizzaId)[0];
 
@@ -42,10 +47,14 @@ function PizzaCustomize({ selectedPizzaId }) {
       </RadioGroup>
       <br />
       <div>
-        <Button size="small" className={classes.button}>
+        <Button
+          size="small"
+          className={classes.button}
+          onClick={handleAddToCart(pizza)}
+        >
           Add to cart
         </Button>
-        <Button size="small" className={classes.button}>
+        <Button size="small" className={classes.button} onClick={onCancel}>
           Cancel
         </Button>
       </div>

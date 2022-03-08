@@ -54,7 +54,7 @@ function Dashboard() {
             size={200}
             sx={{ marginBottom: "50px" }}
           />
-          <Typography variant="h2">
+          <Typography variant="h2" className={classes.content}>
             Pizzas Are Loading! Please Wait 🤤
           </Typography>
         </div>
@@ -63,7 +63,7 @@ function Dashboard() {
           <div>
             <Toolbar>
               <Typography variant="h5" sx>
-                Sort By -
+                Sort Pizzas -
                 <Button size="small" className={classes.button}>
                   Price
                 </Button>
@@ -71,17 +71,19 @@ function Dashboard() {
                   Rating
                 </Button>
               </Typography>
-              <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
-                <ToggleButton>
-                  <Typography>Veg</Typography>
-                </ToggleButton>
-                <ToggleButton>
-                  <Typography>Non-Veg</Typography>
-                </ToggleButton>
-                <ToggleButton>
-                  <Typography>All</Typography>
-                </ToggleButton>
-              </ToggleButtonGroup>
+              <div style={{ float: "right" }}>
+                <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
+                  <ToggleButton>
+                    <Typography>Veg</Typography>
+                  </ToggleButton>
+                  <ToggleButton>
+                    <Typography>Non-Veg</Typography>
+                  </ToggleButton>
+                  <ToggleButton>
+                    <Typography>All</Typography>
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
             </Toolbar>
           </div>
           <div className={classes.dash}>
@@ -143,7 +145,10 @@ function Dashboard() {
                   Choose Size and Toppings
                 </DialogTitle>
                 <DialogContent>
-                  <PizzaCustomize selectedPizzaId={selectedValue} />
+                  <PizzaCustomize
+                    selectedPizzaId={selectedValue}
+                    onCancel={handleClose}
+                  />
                 </DialogContent>
               </Dialog>
             )}

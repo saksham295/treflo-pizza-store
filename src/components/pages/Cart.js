@@ -25,7 +25,6 @@ const useStyles = makeStyles(pageStyles);
 function Cart() {
   const classes = useStyles();
   const cart = useSelector(cartSelector);
-  // console.log(cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,14 +46,12 @@ function Cart() {
   return (
     <div>
       {cart.cartItems.length === 0 ? (
-        <>
-          <Typography variant="h4">Your cart is currently empty</Typography>
-          <Typography>
-            <Link to="/">
-              <Typography variant="h4">Start Shopping</Typography>
-            </Link>
-          </Typography>
-        </>
+        <div className={classes.content}>
+          <Typography variant="h3">Your cart is currently empty!</Typography>
+          <Link href="/">
+            <Typography variant="h4">Start Shopping</Typography>
+          </Link>
+        </div>
       ) : (
         <div>
           <div>
@@ -110,26 +107,20 @@ function Cart() {
                 </Card>
               ))}
           </div>
-          <div>
-            <button
+          <div className={classes.cart}>
+            <Typography variant="h5">Total: ${cart.cartTotalAmount}</Typography>
+            <Button
               className={classes.button}
               onClick={() => handleClearCart()}
             >
               Clear Cart
-            </button>
-            <div>
-              <div>
-                <span>Subtotal</span>
-                <span>${cart.cartTotalAmount}</span>
-              </div>
-              <p>Taxes and shipping calculated at checkout</p>
-              <button>Check out</button>
-              <div>
-                <Link to="/">
-                  <span>Continue Shopping</span>
-                </Link>
-              </div>
-            </div>
+            </Button>
+            <Button className={classes.button}>Check out</Button>
+            <Link href="/">
+              <Typography sx={{ marginBottom: "10" }}>
+                Continue Shopping
+              </Typography>
+            </Link>
           </div>
         </div>
       )}

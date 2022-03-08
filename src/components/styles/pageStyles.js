@@ -34,6 +34,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    color: "#0ea58a",
+    margin: 10,
   },
   footer: {
     display: "flex",
@@ -53,6 +55,13 @@ const styles = {
     justifyContent: "center",
     margin: 20,
     padding: 20,
+  },
+  cart: {
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    alignContent: "flex-end",
+    justifyContent: "flex-end",
   },
 };
 
