@@ -6,7 +6,9 @@ import {
   sortByPrice,
   sortByRating,
   sortVeg,
+  sortNonVeg,
 } from "../../redux/slices/pizzaSlice";
+import { decreaseCart } from "../../redux/slices/cartSlice";
 import {
   Typography,
   Card,
@@ -33,6 +35,7 @@ const useStyles = makeStyles(pageStyles);
 
 function Dashboard() {
   const classes = useStyles();
+  const [alignment, setAlignment] = React.useState("");
   const dispatch = useDispatch();
 
   const { pizzas, loading } = useSelector(pizzaSelector);
@@ -48,8 +51,23 @@ function Dashboard() {
     dispatch(sortByRating());
   };
 
-  const handleClickVeg = () => {
+  const handleClickVeg = (event, newAlignment) => {
+    setAlignment(newAlignment);
     dispatch(sortVeg());
+  };
+
+  const handleClickNonVeg = (event, newAlignment) => {
+    setAlignment(newAlignment);
+    dispatch(sortNonVeg());
+  };
+
+  const handleClickAll = () => {
+    setAlignment("");
+    dispatch(fetchPizzas());
+  };
+
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
   };
 
   const [open, setOpen] = React.useState(false);
@@ -96,17 +114,25 @@ function Dashboard() {
             >
               Rating
             </Button>
-            <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
-              <ToggleButton onClick={handleClickVeg}>
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              sx={{ margin: "2px 10px" }}
+            >
+              <ToggleButton value="Veg" onClick={handleClickVeg}>
                 <Typography>Veg</Typography>
               </ToggleButton>
-              <ToggleButton>
+              <ToggleButton value="NonVeg" onClick={handleClickNonVeg}>
                 <Typography>Non-Veg</Typography>
               </ToggleButton>
-              <ToggleButton>
-                <Typography>All</Typography>
-              </ToggleButton>
             </ToggleButtonGroup>
+            <Button
+              size="small"
+              className={classes.button}
+              onClick={handleClickAll}
+            >
+              Clear Filters
+            </Button>
           </Toolbar>
           <div className={classes.dash}>
             {pizzas.map((row) => (
@@ -147,7 +173,11 @@ function Dashboard() {
                   >
                     +
                   </Button>
-                  <Button size="small" className={classes.button}>
+                  <Button
+                    size="small"
+                    className={classes.button}
+                    onClick={() => handleDecreaseCart(row.id)}
+                  >
                     -
                   </Button>
                 </CardActions>

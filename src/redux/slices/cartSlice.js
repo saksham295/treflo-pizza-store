@@ -14,7 +14,10 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload
+        (item) =>
+          item.id === action.payload.id &&
+          action.payload.size === item.size &&
+          action.payload.toppings === item.toppings
       );
 
       if (existingIndex >= 0) {
@@ -31,14 +34,19 @@ const cartSlice = createSlice({
 
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload
+        (item) => item.id === action.payload.id
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
-          (item) => item.id !== action.payload
+          (item) =>
+            !(
+              item.id === action.payload.id &&
+              action.payload.size === item.size &&
+              action.payload.toppings === item.toppings
+            )
         );
 
         state.cartItems = nextCartItems;
@@ -49,9 +57,14 @@ const cartSlice = createSlice({
 
     removeFromCart(state, action) {
       state.cartItems.map((cartItem) => {
-        if (cartItem.id === action.payload) {
+        if (cartItem.id === action.payload.id) {
           const nextCartItems = state.cartItems.filter(
-            (item) => item.id !== cartItem.id
+            (item) =>
+              !(
+                item.id === cartItem.id &&
+                action.payload.size === item.size &&
+                action.payload.toppings === item.toppings
+              )
           );
 
           state.cartItems = nextCartItems;

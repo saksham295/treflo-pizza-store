@@ -53,8 +53,8 @@ function Cart() {
           </Link>
         </div>
       ) : (
-        <div>
-          <div>
+        <div style={{ minHeight: "100vh" }}>
+          <div className={classes.dash}>
             {cart.cartItems &&
               cart.cartItems.map((cartItem) => (
                 <Card key={cartItem.id} className={classes.root}>
@@ -81,6 +81,14 @@ function Cart() {
                       {cartItem.isVeg ? "Vegetarian" : "Non-Vegetarian"}
                     </Typography>
                     <Typography align="center">
+                      Size: {cartItem.size}
+                    </Typography>
+                    {cartItem.toppings ? (
+                      <Typography align="center">
+                        Toppings: {cartItem.toppings}
+                      </Typography>
+                    ) : null}
+                    <Typography align="center">
                       Quantity: {cartItem.cartQuantity}
                     </Typography>
                   </CardContent>
@@ -88,21 +96,21 @@ function Cart() {
                     <Button
                       size="small"
                       className={classes.button}
-                      onClick={() => handleAddToCart(cartItem.id)}
+                      onClick={() => handleAddToCart(cartItem)}
                     >
                       +
                     </Button>
                     <Button
                       size="small"
                       className={classes.button}
-                      onClick={() => handleDecreaseCart(cartItem.id)}
+                      onClick={() => handleDecreaseCart(cartItem)}
                     >
                       -
                     </Button>
                     <Button
                       size="small"
                       className={classes.button}
-                      onClick={() => handleRemoveFromCart(cartItem.id)}
+                      onClick={() => handleRemoveFromCart(cartItem)}
                     >
                       Remove
                     </Button>

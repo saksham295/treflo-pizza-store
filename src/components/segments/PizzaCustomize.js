@@ -19,23 +19,22 @@ function PizzaCustomize({ selectedPizzaId, onCancel }) {
   const [toppings, setToppings] = React.useState();
   const dispatch = useDispatch();
 
-  const handleSize = (event) => {
-    setSize(event.target.value);
+  const handleSize = (e) => {
+    setSize(e.target.value);
   };
-  console.log(size);
-
-  const handleToppings = (event) => {
-    setToppings({
-      ...toppings,
-      [event.target.name]: event.target.checked,
-    });
+  const handleToppings = (e) => {
+    setToppings(e.target.value);
   };
-  console.log(toppings);
-
   const handleAddToCart = (product) => {
+    product = {
+      ...product,
+      size: size,
+      toppings: toppings,
+    };
     dispatch(addToCart(product));
     onCancel();
   };
+
   const { pizzas } = useSelector(pizzaSelector);
   const pizza = pizzas.filter((pizza) => pizza.id === selectedPizzaId)[0];
 

@@ -91,9 +91,28 @@ export function sortVeg() {
       );
       const data = await response.json();
 
-      data?.filter((pizza) => pizza.isVeg === true);
+      const newData = data?.filter((pizza) => pizza.isVeg === true);
 
-      dispatch(getPizzasSuccess(data));
+      dispatch(getPizzasSuccess(newData));
+    } catch (error) {
+      dispatch(getPizzasFailure());
+    }
+  };
+}
+
+export function sortNonVeg() {
+  return async (dispatch) => {
+    dispatch(getPizzas());
+
+    try {
+      const response = await fetch(
+        "https://run.mocky.io/v3/ec196a02-aaf4-4c91-8f54-21e72f241b68"
+      );
+      const data = await response.json();
+
+      const newData = data?.filter((pizza) => pizza.isVeg === false);
+
+      dispatch(getPizzasSuccess(newData));
     } catch (error) {
       dispatch(getPizzasFailure());
     }
