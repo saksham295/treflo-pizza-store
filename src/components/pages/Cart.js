@@ -46,7 +46,7 @@ function Cart() {
   return (
     <div>
       {cart.cartItems.length === 0 ? (
-        <div className={classes.content}>
+        <div className={classes.content} style={{ height: "100vh" }}>
           <Typography variant="h3">Your cart is currently empty!</Typography>
           <Link href="/">
             <Typography variant="h4">Start Shopping</Typography>

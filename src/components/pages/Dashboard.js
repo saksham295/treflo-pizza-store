@@ -66,7 +66,7 @@ function Dashboard() {
   return (
     <>
       {loading ? (
-        <div className={classes.loading}>
+        <div className={classes.loading} style={{ height: "100vh" }}>
           <CircularProgress
             color="primary"
             size={200}

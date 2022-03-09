@@ -38,17 +38,6 @@ const styles = {
     color: "#0ea58a",
     margin: 10,
   },
-  footer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 5,
-    position: "fixed",
-    bottom: 0,
-    backgroundColor: "#1976d2",
-    color: "white",
-    width: "98%",
-  },
   loading: {
     display: "flex",
     flexDirection: "column",
