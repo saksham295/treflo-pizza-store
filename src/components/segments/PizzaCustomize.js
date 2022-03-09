@@ -15,7 +15,23 @@ const useStyles = makeStyles(pageStyles);
 
 function PizzaCustomize({ selectedPizzaId, onCancel }) {
   const classes = useStyles();
+  const [size, setSize] = React.useState();
+  const [toppings, setToppings] = React.useState();
   const dispatch = useDispatch();
+
+  const handleSize = (event) => {
+    setSize(event.target.value);
+  };
+  console.log(size);
+
+  const handleToppings = (event) => {
+    setToppings({
+      ...toppings,
+      [event.target.name]: event.target.checked,
+    });
+  };
+  console.log(toppings);
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     onCancel();
@@ -26,7 +42,7 @@ function PizzaCustomize({ selectedPizzaId, onCancel }) {
   return (
     <FormControl>
       <FormLabel id="sizes">Size - </FormLabel>
-      <RadioGroup aria-labelledby="sizes" name="size">
+      <RadioGroup aria-labelledby="sizes" name="size" onChange={handleSize}>
         {pizza.size[0].items.map((size) => (
           <FormControlLabel
             value={size.size}
@@ -37,7 +53,11 @@ function PizzaCustomize({ selectedPizzaId, onCancel }) {
       </RadioGroup>
       <br />
       <FormLabel id="toppings">Toppings - </FormLabel>
-      <RadioGroup aria-labelledby="toppings" name="topping">
+      <RadioGroup
+        aria-labelledby="toppings"
+        name="topping"
+        onChange={handleToppings}
+      >
         {pizza.toppings[0].items.map((topping) => (
           <FormControlLabel
             value={topping.name}

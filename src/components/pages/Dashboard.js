@@ -96,19 +96,17 @@ function Dashboard() {
             >
               Rating
             </Button>
-            <div style={{ float: "right" }}>
-              <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
-                <ToggleButton onClick={handleClickVeg}>
-                  <Typography>Veg</Typography>
-                </ToggleButton>
-                <ToggleButton>
-                  <Typography>Non-Veg</Typography>
-                </ToggleButton>
-                <ToggleButton>
-                  <Typography>All</Typography>
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </div>
+            <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
+              <ToggleButton onClick={handleClickVeg}>
+                <Typography>Veg</Typography>
+              </ToggleButton>
+              <ToggleButton>
+                <Typography>Non-Veg</Typography>
+              </ToggleButton>
+              <ToggleButton>
+                <Typography>All</Typography>
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Toolbar>
           <div className={classes.dash}>
             {pizzas.map((row) => (
