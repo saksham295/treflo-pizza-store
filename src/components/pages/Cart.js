@@ -80,6 +80,9 @@ function Cart() {
                     <Typography align="center">
                       {cartItem.isVeg ? "Vegetarian" : "Non-Vegetarian"}
                     </Typography>
+                    <Typography align="center">
+                      Quantity: {cartItem.cartQuantity}
+                    </Typography>
                   </CardContent>
                   <CardActions>
                     <Button

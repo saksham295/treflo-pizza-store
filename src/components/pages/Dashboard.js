@@ -60,7 +60,7 @@ function Dashboard() {
     setSelectedValue(selectedPizzaId);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setOpen(false);
   };
   return (
@@ -78,40 +78,38 @@ function Dashboard() {
         </div>
       ) : (
         <>
-          <div>
-            <Toolbar>
-              <Typography variant="h5" className={classes.content}>
-                Sort Pizzas -
-              </Typography>
-              <Button
-                size="small"
-                className={classes.button}
-                onClick={handleClickPrice}
-              >
-                Price
-              </Button>
-              <Button
-                size="small"
-                className={classes.button}
-                onClick={handleClickRating}
-              >
-                Rating
-              </Button>
-              <div style={{ float: "right" }}>
-                <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
-                  <ToggleButton onClick={handleClickVeg}>
-                    <Typography>Veg</Typography>
-                  </ToggleButton>
-                  <ToggleButton>
-                    <Typography>Non-Veg</Typography>
-                  </ToggleButton>
-                  <ToggleButton>
-                    <Typography>All</Typography>
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </div>
-            </Toolbar>
-          </div>
+          <Toolbar className={classes.dash}>
+            <Typography variant="h5" className={classes.content}>
+              Sort Pizzas -
+            </Typography>
+            <Button
+              size="small"
+              className={classes.button}
+              onClick={handleClickPrice}
+            >
+              Price
+            </Button>
+            <Button
+              size="small"
+              className={classes.button}
+              onClick={handleClickRating}
+            >
+              Rating
+            </Button>
+            <div style={{ float: "right" }}>
+              <ToggleButtonGroup exclusive sx={{ margin: "2px 10px" }}>
+                <ToggleButton onClick={handleClickVeg}>
+                  <Typography>Veg</Typography>
+                </ToggleButton>
+                <ToggleButton>
+                  <Typography>Non-Veg</Typography>
+                </ToggleButton>
+                <ToggleButton>
+                  <Typography>All</Typography>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
+          </Toolbar>
           <div className={classes.dash}>
             {pizzas.map((row) => (
               <Card key={row.id} className={classes.root}>

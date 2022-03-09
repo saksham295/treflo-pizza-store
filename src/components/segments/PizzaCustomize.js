@@ -18,6 +18,7 @@ function PizzaCustomize({ selectedPizzaId, onCancel }) {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    onCancel();
   };
   const { pizzas } = useSelector(pizzaSelector);
   const pizza = pizzas.filter((pizza) => pizza.id === selectedPizzaId)[0];
@@ -50,7 +51,7 @@ function PizzaCustomize({ selectedPizzaId, onCancel }) {
         <Button
           size="small"
           className={classes.button}
-          onClick={handleAddToCart(pizza)}
+          onClick={() => handleAddToCart(pizza)}
         >
           Add to cart
         </Button>

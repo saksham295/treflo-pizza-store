@@ -34,6 +34,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     color: "#0ea58a",
     margin: 10,
   },
