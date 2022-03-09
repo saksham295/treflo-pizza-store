@@ -190,7 +190,7 @@ function Dashboard() {
                 selectedValue={selectedValue}
                 open={open}
                 onClose={handleClose}
-                fullWidth="true"
+                fullWidth
                 maxWidth="sm"
               >
                 <DialogTitle align="center">
